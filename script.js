@@ -26,27 +26,30 @@ function buscarProducto(productos) {
 }
 
 function ordenarMenoramayor(productos) {
-    console.log(productos.sort((a,b) => a-b))
+    console.log(productos.sort((a,b) => a.precio-b.precio))
 
 }
 
 function ordenarMayoramenor(productos) {
-    console.log(productos.sort((a,b) => b-a))
+    console.log(productos.sort((a,b) => b.precio-a.precio))
 }
 
+function ordenarStockMenoramayor(productos) {
+    console.log(productos.sort((a,b) => a.stock-b.stock))
+
+}
+
+function ordenarStockMayoramenor(productos) {
+    console.log(productos.sort((a,b) => a.stock-b.stock))
+
+}
 do {
     
     do {
         nombre = prompt("Ingrese el nombre del producto:").toLowerCase()
         marca = prompt("Ingrese la marco del producto:").toLowerCase()
 
-        if (nombre.length == 0 ) {
-            console.log("Porfavor ingrese un nombre valido")
-        } 
-
-        if (marca.length == 0) {
-            console.log("Porfavor ingrese una marca valida")
-        } 
+    
 
     }while ((nombre.length == 0 || marca.length == 0))
 
@@ -55,13 +58,7 @@ do {
         precio = parseFloat(prompt("Ingrese el precio del producto:"))
         stock =  parseInt(prompt("Ingrese el stock de dicho producto:"))
 
-        if (isNaN(precio) || precio <= 0) {
-            console.log("Porfavor ingrese un precio valido")
-        }
-
-        if (isNaN(stock) || stock <= 0) {
-            console.log("Porfavor ingrese un stock valido")
-        }
+        
 
     } while ((isNaN(precio) || isNaN(stock)) || (precio <= 0 || stock <= 0));
 
@@ -75,18 +72,18 @@ let respuesta;
 
 do {
     respuesta = parseInt(prompt(`Ingrese un numero para:
-    0- Salir del programa
+    
     1- Buscar producto segun el nombre
-    2- Odenar de menor a mayor 
-    3- Odenar de mayor a menor 
+    2- Odenar de menor a mayor segun el precio
+    3- Odenar de mayor a menor segun el precio
+    4- Odenar de menor a mayor segun el stock
+    5- Odenar de mayor a menor segun el stock
     `));
-} while (respuesta === 0,1,2,3 );
+
+} while (respuesta < 1 || respuesta > 5);
 
 switch (respuesta) {
-    case 0:
-        console.log("Adios")
-        break
-
+   
     case 1: 
         buscarProducto(productos)
         break
@@ -96,6 +93,15 @@ switch (respuesta) {
     case 3:
         ordenarMayoramenor(productos)
         break
-    default:
+    case 4:
+        ordenarStockMenoramayor(productos)
         break
+    case 5:
+        ordenarStockMayoramenor(productos)
+        break
+        
+    default:
+        alert("opcion no valida")
+        break
+  
 }
